@@ -1,8 +1,8 @@
-Profile: CKObservationProfile
+Profile: SpeziObservationProfile
 Parent: Observation
-Id: ck-obs
-Title: "CardinalKit mHealth Observation Profile"
-Description: "Observation Profile used for representing mobile health data in CardinalKit applications"
+Id: spezi-observation
+Title: "Spezi mHealth Observation Profile"
+Description: "Observation Profile used for representing mobile health data in Spezi applications"
 * ^version = "1.0.0"
 * ^experimental = false
 * ^date = "2022-01-31"

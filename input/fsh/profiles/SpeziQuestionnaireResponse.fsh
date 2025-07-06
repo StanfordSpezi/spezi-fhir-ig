@@ -1,8 +1,8 @@
-Profile: CKQuestionnaireResponseProfile
+Profile: SpeziQuestionnaireResponseProfile
 Parent: QuestionnaireResponse
-Id: ck-questionnaireresponse
-Title: "CardinalKit QuestionnaireResponse Profile"
-Description: "QuestionnaireResponse Profile used to represent survey results in CardinalKit applications"
+Id: spezi-questionnaireresponse
+Title: "Spezi QuestionnaireResponse Profile"
+Description: "QuestionnaireResponse Profile used to represent survey results in Spezi applications"
 * ^version = "1.0.0"
 * ^experimental = false
 * ^date = "2022-08-26"

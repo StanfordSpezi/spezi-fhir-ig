@@ -1,7 +1,7 @@
-Profile: CKQuestionnaireProfile
+Profile: SpeziQuestionnaireProfile
 Parent: Questionnaire
-Id: ck-questionnaire
-Title: "CardinalKit Questionnaire Profile"
+Id: spezi-questionnaire
+Title: "Spezi Questionnaire Profile"
 Description: "Questionnaire Profile used to represent surveys rendered on mobile devices"
 * ^version = "1.0.0"
 * ^experimental = false
