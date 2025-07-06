@@ -16,13 +16,35 @@ The following software must be installed prior to building the implementation gu
 - [Jekyll](https://jekyllrb.com/docs/installation/)
 - [Java Development Kit (JDK)](https://www.oracle.com/ae/java/technologies/downloads/)
 
-## Building and Viewing
+### Install Dependencies
 
-1. In the root directory, run `_updatePublisher.sh` on MacOS/Linux or `_updatePublisher.bat` on Windows to download the FHIR IG Publisher JAR.
-2. Now, run `_genonce.sh` on MacOS/Linux or `_genonce.bat` on Windows to generate the Implementation Guide in HTML.
-3. The HTML files will be placed in the `output` directory. Open the `index.html` file in a web browser to view the Implementation Guide.
+Clone the repository with `git` and install dependencies using `npm`.
 
-## Editing
+```bash
+git clone https://github.com/StanfordSpezi/spezi-fhir-ig.git
+cd spezi-fhir-ig
+npm install
+```
+
+Download the latest version of the FHIR IG Publisher.
+
+```bash
+chmod +x _updatePublisher.sh
+./_updatePublisher.sh
+```
+
+### Building and Viewing
+
+Build the Implementation Guide HTML.
+
+```bash
+chmod +x _genonce.sh
+./_genonce.sh
+```
+
+Once the build step completes, the HTML files will be placed in the `output` directory. Open the `index.html` file in a web browser to view the Implementation Guide.
+
+### Editing the Implementation Guide
 
 The `input/fsh` folder contains the Profiles defined in this IG, written in FHIR Shorthand (FSH). The narrative content is found in `input/pagecontent` in Markdown format. Global configuration is done in `sushi-config.yaml` in the root of the directory. 
 
