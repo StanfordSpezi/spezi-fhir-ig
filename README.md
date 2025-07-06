@@ -12,21 +12,13 @@ A FHIR Implementation Guide (IG) is a comprehensive specification document that 
 
 The following software must be installed prior to building the implementation guide:
 
-- [Node.js](https://nodejs.org/en)
+- [FSH SUSHI](https://github.com/FHIR/sushi)
 - [Jekyll](https://jekyllrb.com/docs/installation/)
 - [Java Development Kit (JDK)](https://www.oracle.com/ae/java/technologies/downloads/)
 
 ### Install Dependencies
 
-Clone the repository with `git` and install dependencies using `npm`.
-
-```bash
-git clone https://github.com/StanfordSpezi/spezi-fhir-ig.git
-cd spezi-fhir-ig
-npm install
-```
-
-Download the latest version of the FHIR IG Publisher.
+Download and install the latest version of the FHIR IG Publisher.
 
 ```bash
 chmod +x _updatePublisher.sh
