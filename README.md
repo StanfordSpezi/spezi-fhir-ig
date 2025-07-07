@@ -8,9 +8,9 @@ SPDX-License-Identifier: MIT
              
 -->
 
-[![Build and Test](https://github.com/StanfordSpezi/spezi-fhir-ig/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/StanfordSpezi/spezi-fhir-ig/actions/workflows/build-and-test.yml)
-
 # Spezi FHIR Implementation Guide
+
+[![Build and Deploy](https://github.com/StanfordSpezi/spezi-fhir-ig/actions/workflows/build-and-deploy.yml/badge.svg)](https://github.com/StanfordSpezi/spezi-fhir-ig/actions/workflows/build-and-deploy.yml)
 
 This repository contains a FHIR Implementation Guide created with [FHIR Shorthand](https://fshschool.org/docs/), [SUSHI](https://github.com/FHIR/sushi), and the [FHIR IG Publisher](https://confluence.hl7.org/display/FHIR/IG+Publisher+Documentation).
 
