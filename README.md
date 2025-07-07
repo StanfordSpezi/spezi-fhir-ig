@@ -70,7 +70,7 @@ Contributions to this project are welcome. A list of contributors can be found i
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the MIT License. See [Licenses](https://github.com/StanfordSpezi/spezi-fhir-ig/tree/main/LICENSES) for more information.
 
 ## Notices
 
