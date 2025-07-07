@@ -4,8 +4,8 @@
 
 ### Publisher
 
-This Implementation Guide was written in [FSH](https://fshschool.org/), and built with [SUSHI](https://github.com/FHIR/sushi) and [IG Publisher](https://confluence.hl7.org/display/FHIR/IG+Publisher+Documentation) by [Vishnu Ravi](https://profiles.stanford.edu/vishnu-ravi). Spezi is a project at the [Stanford Byers Center for Biodesign](https://biodesign.stanford.edu) at [Stanford University](https://stanford.edu/).
+This Implementation Guide was written in [FSH](https://fshschool.org/), and built with [SUSHI](https://github.com/FHIR/sushi) and [IG Publisher](https://confluence.hl7.org/display/FHIR/IG+Publisher+Documentation). Spezi is a project of [Stanford Biodesign Digital Health](https://bdh.stanford.edu) at [Stanford University](https://stanford.edu/).
 
 ### Licensing
 
-While this implementation guide itself is in the public domain, it includes examples making use of terminologies such as SNOMED CT, LOINC, and others that may have more restrictive licensing requirements.
+While this implementation guide itself is released under the MIT license, it includes examples making use of terminologies such as SNOMED CT, LOINC, and others that may have more restrictive licensing requirements.
