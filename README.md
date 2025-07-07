@@ -12,9 +12,13 @@ SPDX-License-Identifier: MIT
 
 [![Build and Deploy](https://github.com/StanfordSpezi/spezi-fhir-ig/actions/workflows/build-and-deploy.yml/badge.svg)](https://github.com/StanfordSpezi/spezi-fhir-ig/actions/workflows/build-and-deploy.yml)
 
-A FHIR Implementation Guide (IG) is a comprehensive specification document that provides detailed guidance on how to use HL7® FHIR® (Fast Healthcare Interoperability Resources) for specific healthcare use cases, domains, or jurisdictions. The Spezi FHIR Implementation Guide serves as the authoritative specification for healthcare interoperability patterns, data structures, and integration approaches when building digital health solutions with the Stanford Spezi framework. It provides developers, healthcare organizations, and system integrators with the necessary guidance to ensure consistent, standards-compliant FHIR implementations.
+A FHIR Implementation Guide (IG) is a comprehensive specification document that provides detailed guidance on how to use HL7® FHIR® (Fast Healthcare Interoperability Resources) for specific healthcare use cases, domains, or jurisdictions. 
+
+The Spezi FHIR Implementation Guide serves as the authoritative specification for healthcare interoperability patterns, data structures, and integration approaches when building digital health solutions with the Stanford Spezi framework. It provides developers, healthcare organizations, and system integrators with the necessary guidance to ensure consistent, standards-compliant FHIR implementations.
 
 This guide was created using [FHIR Shorthand](https://fshschool.org/docs/), [SUSHI](https://github.com/FHIR/sushi), and the [FHIR IG Publisher](https://confluence.hl7.org/display/FHIR/IG+Publisher+Documentation).
+
+It can be seen live at [https://spezi.health/spezi-fhir-ig](https://spezi.health/spezi-fhir-ig).
 
 ## Development Instructions
 
