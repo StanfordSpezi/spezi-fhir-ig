@@ -3,23 +3,23 @@
 # │  used properties are included. For a list of all supported properties and their functions,     │
 # │  see: https://fshschool.org/docs/sushi/configuration/.                                         │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
-id: fhir.CKmHealthToFhir
-canonical: http://cardinalkit.org/fhir
-name: CKmHealthFhirIG
-title: CardinalKit Mobile Health Data FHIR Implementation Guide
-description: An Implementation Guide for representing mobile health data in FHIR
-status: active # draft | active | retired | unknown
-version: 1.0.0
+id: fhir.spezi
+canonical: http://spezi.health/fhir
+name: SpeziFhirIG
+title: Stanford Spezi FHIR Implementation Guide
+description: An Implementation Guide for using FHIR with digital health applications
+status: draft # draft | active | retired | unknown
+version: 0.1.0
 fhirVersion: 4.0.1 # https://www.hl7.org/fhir/valueset-FHIR-version.html
-copyrightYear: 2021+
+copyrightYear: 2025+
 license: MIT
-releaseLabel: release # ci-build | draft | qa-preview | ballot | trial-use | release | update | normative+trial-use
+releaseLabel: ci-build # ci-build | draft | qa-preview | ballot | trial-use | release | update | normative+trial-use
 # license: CC0-1.0 # https://www.hl7.org/fhir/valueset-spdx-license.html
 # jurisdiction: urn:iso:std:iso:3166#US "United States of America" # https://www.hl7.org/fhir/valueset-jurisdiction.html
 publisher:
-  name: Stanford Byers Center for Biodesign
-  url: http://biodesign.stanford.edu/
-  email: vishnur@stanford.edu
+  name: Stanford Biodesign Digital Health
+  url: http://bdh.stanford.edu/
+  email: speziteam@stanford.edu
 
 # The dependencies property corresponds to IG.dependsOn. The key is the
 # package id and the value is the version (or dev/current). For advanced

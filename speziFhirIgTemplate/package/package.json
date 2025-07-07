@@ -1,0 +1,13 @@
+{
+    "name": "spezi.fhir.template",
+    "type": "fhir.template",
+    "license": "MIT",
+    "description": "Spezi FHIR template",
+    "author": "Stanford Biodesign Digital Health",
+    "canonical": "http://spezi.health/fhir/templates/cardinalkit.fhir.template",
+    "base": "fhir.base.template",
+    "dependencies": {
+      "fhir.base.template": "current"
+    },
+    "version": "0.1.0"
+  }
