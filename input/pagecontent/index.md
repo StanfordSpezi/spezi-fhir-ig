@@ -1,3 +1,15 @@
+<!--
+                  
+#
+# This source file is part of the Stanford Spezi open source project
+#
+# SPDX-FileCopyrightText: 2025 Stanford University and the project authors (see CONTRIBUTORS.md)
+#
+# SPDX-License-Identifier: MIT
+# 
+             
+-->
+
 ### Background
 
 [Stanford Spezi](https://spezi.stanford.edu) is an open-source, modular ecosystem for building standards-based digital health applications. This Implementation Guide describes how Spezi represents mobile health data as FHIR resources.

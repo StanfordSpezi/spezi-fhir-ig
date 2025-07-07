@@ -10,11 +10,7 @@
              
 -->
 
+Spezi FHIR Implementation Guide contributors
+====================
 
-### Value Sets
-
-{% include list-simple-valuesets.xhtml %}
-
-### Code Systems
-
-{% include list-simple-codesystems.xhtml %}
+* [Vishnu Ravi](https://github.com/vishnuravi)

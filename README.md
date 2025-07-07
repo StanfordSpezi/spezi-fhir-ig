@@ -1,3 +1,13 @@
+<!--
+                  
+This source file is part of the Stanford Spezi open source project
+
+SPDX-FileCopyrightText: 2025 Stanford University and the project authors (see CONTRIBUTORS.md)
+
+SPDX-License-Identifier: MIT
+             
+-->
+
 # Spezi FHIR Implementation Guide
 
 This repository contains a FHIR Implementation Guide created with [FHIR Shorthand](https://fshschool.org/docs/), [SUSHI](https://github.com/FHIR/sushi), and the [FHIR IG Publisher](https://confluence.hl7.org/display/FHIR/IG+Publisher+Documentation).
@@ -38,11 +48,19 @@ Once the build step completes, the HTML files will be placed in the `output` dir
 
 ### Editing the Implementation Guide
 
-The `input/fsh` folder contains the Profiles defined in this IG, written in FHIR Shorthand (FSH). The narrative content is found in `input/pagecontent` in Markdown format. Global configuration is done in `sushi-config.yaml` in the root of the directory. 
+Global configuration is done using the `sushi-config.yaml` file in the root of the project.
 
-## Authors
+The [input](https://github.com/StanfordSpezi/spezi-fhir-ig/tree/main/input) folder contains the content of the implementation guide. There are two subfolders:
+- [`fsh`](https://github.com/StanfordSpezi/spezi-fhir-ig/tree/main/input/fsh) contains definitions for the codesystems, extensions, profiles, and valuesets used in this guide written in [FHIR ShortHand (FSH)](https://build.fhir.org/ig/HL7/fhir-shorthand/).
+- [`pagecontent`](https://github.com/StanfordSpezi/spezi-fhir-ig/tree/main/input/pagecontent) contains the narrative content in Markdown format.
 
-Vishnu Ravi ([@vishnuravi](https://github.com/vishnuravi))
+## Contributing
+
+Contributions to this project are welcome. A list of contributors can be found in [CONTRIBUTORS.md](CONTRIBUTORS.md) Please make sure to read the [contribution guidelines](https://github.com/StanfordSpezi/.github/blob/main/CONTRIBUTING.md) and the [contributor covenant code of conduct](https://github.com/StanfordSpezi/.github/blob/main/CODE_OF_CONDUCT.md) first.
+
+## License
+
+This project is licensed under the MIT License.
 
 ![Spezi Footer](https://raw.githubusercontent.com/StanfordSpezi/.github/main/assets/FooterLight.png#gh-light-mode-only)
 ![Spezi Footer](https://raw.githubusercontent.com/StanfordSpezi/.github/main/assets/FooterDark.png#gh-dark-mode-only)

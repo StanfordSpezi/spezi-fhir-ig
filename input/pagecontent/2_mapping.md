@@ -1,3 +1,16 @@
+<!--
+                  
+#
+# This source file is part of the Stanford Spezi open source project
+#
+# SPDX-FileCopyrightText: 2025 Stanford University and the project authors (see CONTRIBUTORS.md)
+#
+# SPDX-License-Identifier: MIT
+# 
+             
+-->
+
+
 Spezi applications can serialize HealthKit data points into FHIR Observations using the [HealthKitOnFHIR](https://github.com/StanfordBDHG/HealthKitOnFHIR) library in combination with the [SpeziHealthKit](https://github.com/StanfordSpezi/SpeziHealthKit) module. The following table shows the supported mappings. Standardized codes(e.g. LOINC and UCUM) are used when possible.
 
 ## HealthKit Mapping Table
