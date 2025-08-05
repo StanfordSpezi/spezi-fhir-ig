@@ -16,6 +16,221 @@ Spezi applications provide comprehensive support for creating interactive health
 
 ResearchKitOnFHIR supports FHIR Questionnaires that conform to the [SDC (Structured Data Capture) Questionnaire profile](http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire) and extends functionality with iOS-specific extensions.
 
+## Example: PHQ-9 Depression Screening
+
+The following example demonstrates a complete implementation of the PHQ-9 (Patient Health Questionnaire-9) depression screening tool that can be rendered by ResearchKitOnFHIR.
+
+```json
+{
+  "resourceType": "Questionnaire",
+  "id": "phq-9-depression-screening",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://spezi.stanford.edu/questionnaire-identifiers",
+      "value": "PHQ-9-v1.0"
+    }
+  ],
+  "name": "PHQ9DepressionScreening",
+  "title": "Patient Health Questionnaire-9 (PHQ-9)",
+  "status": "active",
+  "subjectType": ["Patient"],
+  "date": "2024-01-15",
+  "publisher": "Stanford Spezi",
+  "description": "The PHQ-9 is a validated screening tool for depression severity in healthcare settings.",
+  "contained": [
+    {
+      "resourceType": "ValueSet",
+      "id": "phq9-answers",
+      "status": "active",
+      "compose": {
+        "include": [
+          {
+            "system": "http://spezi.stanford.edu/fhir/CodeSystem/phq9-answers",
+            "concept": [
+              {
+                "code": "0",
+                "display": "Not at all",
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
+                    "valueDecimal": 0
+                  }
+                ]
+              },
+              {
+                "code": "1",
+                "display": "Several days",
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
+                    "valueDecimal": 1
+                  }
+                ]
+              },
+              {
+                "code": "2",
+                "display": "More than half the days",
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
+                    "valueDecimal": 2
+                  }
+                ]
+              },
+              {
+                "code": "3",
+                "display": "Nearly every day",
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
+                    "valueDecimal": 3
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "item": [
+    {
+      "linkId": "phq9-intro",
+      "type": "display",
+      "text": "Over the last 2 weeks, how often have you been bothered by any of the following problems?",
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/rendering-styleSensitive",
+          "valueString": "emphasis"
+        }
+      ]
+    },
+    {
+      "linkId": "phq9-1",
+      "type": "choice",
+      "text": "Little interest or pleasure in doing things",
+      "required": true,
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "radio-button"
+              }
+            ]
+          }
+        }
+      ],
+      "answerValueSet": "#phq9-answers"
+    },
+    {
+      "linkId": "phq9-2", 
+      "type": "choice",
+      "text": "Feeling down, depressed, or hopeless",
+      "required": true,
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "radio-button"
+              }
+            ]
+          }
+        }
+      ],
+      "answerValueSet": "#phq9-answers"
+    },
+    {
+      "linkId": "phq9-score",
+      "type": "integer",
+      "text": "Total PHQ-9 Score",
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+          "valueBoolean": true
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/minValue",
+          "valueInteger": 0
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/maxValue", 
+          "valueInteger": 27
+        }
+      ]
+    }
+  ]
+}
+```
+
+### Corresponding QuestionnaireResponse
+
+When a patient completes the survey, ResearchKitOnFHIR generates a FHIR QuestionnaireResponse:
+
+```json
+{
+  "resourceType": "QuestionnaireResponse",
+  "id": "phq9-response-example",
+  "questionnaire": "Questionnaire/phq-9-depression-screening",
+  "status": "completed",
+  "subject": {
+    "reference": "Patient/example-patient"
+  },
+  "authored": "2024-01-15T14:30:00Z",
+  "source": {
+    "reference": "Patient/example-patient"
+  },
+  "item": [
+    {
+      "linkId": "phq9-1",
+      "answer": [
+        {
+          "valueString": "Several days",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
+              "valueDecimal": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "phq9-2",
+      "answer": [
+        {
+          "valueString": "More than half the days",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
+              "valueDecimal": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "phq9-score",
+      "answer": [
+        {
+          "valueInteger": 3
+        }
+      ]
+    }
+  ]
+}
+```
+
 ## Supported FHIR Extensions
 
 The ResearchKitOnFHIR library supports a comprehensive set of standard HL7 FHIR extensions to enhance questionnaire functionality and provide rich user experiences on mobile platforms.
@@ -279,221 +494,6 @@ iOS-optimized input experiences:
     {
       "url": "http://bdh.stanford.edu/fhir/StructureDefinition/ios-textcontenttype",
       "valueString": "emailAddress"
-    }
-  ]
-}
-```
-
-## Complete Example: PHQ-9 Depression Screening
-
-The following example demonstrates a complete implementation of the PHQ-9 (Patient Health Questionnaire-9) depression screening tool using FHIR Questionnaire with ResearchKit rendering:
-
-```json
-{
-  "resourceType": "Questionnaire",
-  "id": "phq-9-depression-screening",
-  "meta": {
-    "profile": [
-      "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire"
-    ]
-  },
-  "identifier": [
-    {
-      "system": "http://spezi.stanford.edu/questionnaire-identifiers",
-      "value": "PHQ-9-v1.0"
-    }
-  ],
-  "name": "PHQ9DepressionScreening",
-  "title": "Patient Health Questionnaire-9 (PHQ-9)",
-  "status": "active",
-  "subjectType": ["Patient"],
-  "date": "2024-01-15",
-  "publisher": "Stanford Spezi",
-  "description": "The PHQ-9 is a validated screening tool for depression severity in healthcare settings.",
-  "contained": [
-    {
-      "resourceType": "ValueSet",
-      "id": "phq9-answers",
-      "status": "active",
-      "compose": {
-        "include": [
-          {
-            "system": "http://spezi.stanford.edu/fhir/CodeSystem/phq9-answers",
-            "concept": [
-              {
-                "code": "0",
-                "display": "Not at all",
-                "extension": [
-                  {
-                    "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
-                    "valueDecimal": 0
-                  }
-                ]
-              },
-              {
-                "code": "1",
-                "display": "Several days",
-                "extension": [
-                  {
-                    "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
-                    "valueDecimal": 1
-                  }
-                ]
-              },
-              {
-                "code": "2",
-                "display": "More than half the days",
-                "extension": [
-                  {
-                    "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
-                    "valueDecimal": 2
-                  }
-                ]
-              },
-              {
-                "code": "3",
-                "display": "Nearly every day",
-                "extension": [
-                  {
-                    "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
-                    "valueDecimal": 3
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    }
-  ],
-  "item": [
-    {
-      "linkId": "phq9-intro",
-      "type": "display",
-      "text": "Over the last 2 weeks, how often have you been bothered by any of the following problems?",
-      "extension": [
-        {
-          "url": "http://hl7.org/fhir/StructureDefinition/rendering-styleSensitive",
-          "valueString": "emphasis"
-        }
-      ]
-    },
-    {
-      "linkId": "phq9-1",
-      "type": "choice",
-      "text": "Little interest or pleasure in doing things",
-      "required": true,
-      "extension": [
-        {
-          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
-          "valueCodeableConcept": {
-            "coding": [
-              {
-                "system": "http://hl7.org/fhir/questionnaire-item-control",
-                "code": "radio-button"
-              }
-            ]
-          }
-        }
-      ],
-      "answerValueSet": "#phq9-answers"
-    },
-    {
-      "linkId": "phq9-2", 
-      "type": "choice",
-      "text": "Feeling down, depressed, or hopeless",
-      "required": true,
-      "extension": [
-        {
-          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
-          "valueCodeableConcept": {
-            "coding": [
-              {
-                "system": "http://hl7.org/fhir/questionnaire-item-control",
-                "code": "radio-button"
-              }
-            ]
-          }
-        }
-      ],
-      "answerValueSet": "#phq9-answers"
-    },
-    {
-      "linkId": "phq9-score",
-      "type": "integer",
-      "text": "Total PHQ-9 Score",
-      "extension": [
-        {
-          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
-          "valueBoolean": true
-        },
-        {
-          "url": "http://hl7.org/fhir/StructureDefinition/minValue",
-          "valueInteger": 0
-        },
-        {
-          "url": "http://hl7.org/fhir/StructureDefinition/maxValue", 
-          "valueInteger": 27
-        }
-      ]
-    }
-  ]
-}
-```
-
-### 2.2.2.1 Corresponding QuestionnaireResponse
-
-When a patient completes the survey, the system generates a FHIR QuestionnaireResponse:
-
-```json
-{
-  "resourceType": "QuestionnaireResponse",
-  "id": "phq9-response-example",
-  "questionnaire": "Questionnaire/phq-9-depression-screening",
-  "status": "completed",
-  "subject": {
-    "reference": "Patient/example-patient"
-  },
-  "authored": "2024-01-15T14:30:00Z",
-  "source": {
-    "reference": "Patient/example-patient"
-  },
-  "item": [
-    {
-      "linkId": "phq9-1",
-      "answer": [
-        {
-          "valueString": "Several days",
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
-              "valueDecimal": 1
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "linkId": "phq9-2",
-      "answer": [
-        {
-          "valueString": "More than half the days",
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
-              "valueDecimal": 2
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "linkId": "phq9-score",
-      "answer": [
-        {
-          "valueInteger": 3
-        }
-      ]
     }
   ]
 }
