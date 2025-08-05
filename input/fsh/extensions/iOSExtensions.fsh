@@ -14,7 +14,7 @@ Description: "Specifies the iOS keyboard type for optimal text input experience 
 * ^context.type = #element
 * ^context.expression = "Questionnaire.item"
 * value[x] only string
-* valueString from iOSKeyboardTypeValueSet (required)
+* valueString from IOSKeyboardTypeValueSet (required)
 
 Extension: AutocapitalizationType
 Id: ios-autocapitalizationType
@@ -32,7 +32,7 @@ Description: "Specifies the iOS autocapitalization behavior for text input field
 * ^context.type = #element
 * ^context.expression = "Questionnaire.item"
 * value[x] only string
-* valueString from iOSAutocapitalizationTypeValueSet (required)
+* valueString from IOSAutocapitalizationTypeValueSet (required)
 
 Extension: TextContentType
 Id: ios-textcontenttype
@@ -50,7 +50,7 @@ Description: "Specifies the iOS text content type for enhanced user experience a
 * ^context.type = #element
 * ^context.expression = "Questionnaire.item"
 * value[x] only string
-* valueString from iOSTextContentTypeValueSet (required)
+* valueString from IOSTextContentTypeValueSet (required)
 
 Extension: ValidationText
 Id: validationtext

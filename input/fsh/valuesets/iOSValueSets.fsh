@@ -1,4 +1,4 @@
-ValueSet: iOSKeyboardTypeValueSet
+ValueSet: IOSKeyboardTypeValueSet
 Id: ios-keyboard-type-valueset
 Title: "iOS Keyboard Type Value Set"
 Description: "Value set for iOS keyboard types used in text input fields"
@@ -11,9 +11,9 @@ Description: "Value set for iOS keyboard types used in text input fields"
 * ^contact.telecom.system = #email
 * ^contact.telecom.value = "speziteam@stanford.edu"
 * ^jurisdiction = urn:iso:std:iso:3166#US "United States of America"
-* include codes from system iOSKeyboardTypeCodeSystem
+* include codes from system IOSKeyboardTypeCodeSystem
 
-ValueSet: iOSAutocapitalizationTypeValueSet
+ValueSet: IOSAutocapitalizationTypeValueSet
 Id: ios-autocapitalization-type-valueset
 Title: "iOS Autocapitalization Type Value Set"
 Description: "Value set for iOS autocapitalization types"
@@ -26,9 +26,9 @@ Description: "Value set for iOS autocapitalization types"
 * ^contact.telecom.system = #email
 * ^contact.telecom.value = "speziteam@stanford.edu"
 * ^jurisdiction = urn:iso:std:iso:3166#US "United States of America"
-* include codes from system iOSAutocapitalizationTypeCodeSystem
+* include codes from system IOSAutocapitalizationTypeCodeSystem
 
-ValueSet: iOSTextContentTypeValueSet
+ValueSet: IOSTextContentTypeValueSet
 Id: ios-text-content-type-valueset
 Title: "iOS Text Content Type Value Set"
 Description: "Value set for iOS text content types for enhanced user experience"
@@ -41,4 +41,4 @@ Description: "Value set for iOS text content types for enhanced user experience"
 * ^contact.telecom.system = #email
 * ^contact.telecom.value = "speziteam@stanford.edu"
 * ^jurisdiction = urn:iso:std:iso:3166#US "United States of America"
-* include codes from system iOSTextContentTypeCodeSystem
+* include codes from system IOSTextContentTypeCodeSystem

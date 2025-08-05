@@ -1,4 +1,4 @@
-CodeSystem: iOSKeyboardTypeCodeSystem
+CodeSystem: IOSKeyboardTypeCodeSystem
 Id: ios-keyboard-type-codesystem
 Title: "iOS Keyboard Type Code System"
 Description: "Code system for iOS keyboard types used in text input fields"
@@ -27,7 +27,7 @@ Description: "Code system for iOS keyboard types used in text input fields"
 * #webSearch "Web Search" "Keyboard optimized for web search"
 * #asciiCapableNumberPad "ASCII Capable Number Pad" "Number pad that outputs ASCII-capable characters"
 
-CodeSystem: iOSAutocapitalizationTypeCodeSystem
+CodeSystem: IOSAutocapitalizationTypeCodeSystem
 Id: ios-autocapitalization-type-codesystem
 Title: "iOS Autocapitalization Type Code System"
 Description: "Code system for iOS autocapitalization types"
@@ -48,7 +48,7 @@ Description: "Code system for iOS autocapitalization types"
 * #sentences "Sentences" "Capitalize the first letter of each sentence"
 * #allCharacters "All Characters" "Capitalize all characters"
 
-CodeSystem: iOSTextContentTypeCodeSystem
+CodeSystem: IOSTextContentTypeCodeSystem
 Id: ios-text-content-type-codesystem
 Title: "iOS Text Content Type Code System"
 Description: "Code system for iOS text content types for enhanced user experience and autofill"
