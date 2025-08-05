@@ -22,7 +22,6 @@ Description: "Observation Profile used for representing mobile health data in Sp
 * bodySite MS
 * method MS
 * device MS
-* device.extension contains OmhModalityExtension named modality 0..*
 * component MS
 * component.code MS
 * component.value[x] only CodeableConcept or Quantity

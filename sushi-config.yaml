@@ -75,7 +75,10 @@ publisher:
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 menu:
   Home: index.html
-  Mapping: 2_mapping.html
+  Implementation:
+    Overview: 2_implementation.html
+    Mobile Health Data: 2_mobile_health_data.html
+    Questionnaires: 2_questionnaires.html
   Terminology: 3_terminology.html
   Profiles: 4_profiles.html
   Examples: 5_examples.html
