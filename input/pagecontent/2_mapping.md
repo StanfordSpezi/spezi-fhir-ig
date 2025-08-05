@@ -109,3 +109,46 @@ Spezi applications can serialize HealthKit data points into FHIR Observations us
 
 
 Please see the [Examples](5_examples.html) page for a complete example mapping.
+
+## ResearchKitOnFHIR Extension Support
+
+Spezi applications can create interactive healthcare questionnaires using the [ResearchKitOnFHIR](https://github.com/StanfordBDHG/ResearchKitOnFHIR) library, which converts FHIR Questionnaires to ResearchKit surveys and serializes results back to FHIR QuestionnaireResponse resources. The library leverages standard HL7 FHIR extensions to enhance questionnaire functionality and user experience.
+
+### Supported Standard FHIR Extensions
+
+The ResearchKitOnFHIR library supports the following standard HL7 FHIR extensions for enhanced questionnaire functionality:
+
+#### Questionnaire Item Control Extensions
+- **`questionnaire-itemControl`** - Defines UI control types (sliders, steppers, etc.)
+- **`questionnaire-hidden`** - Controls item visibility and conditional display
+- **`questionnaire-sliderStepValue`** - Sets step increments for slider controls
+
+#### Validation Extensions
+- **`regex`** - Input validation using regular expression patterns
+- **`questionnaire-validationText`** - Custom validation error messages for user feedback
+- Legacy validation message extensions for backward compatibility
+
+#### Value Constraint Extensions
+- **`minValue`** / **`maxValue`** - Numerical range constraints for numeric inputs
+- **`minValueDate`** / **`maxValueDate`** - Date range constraints for date inputs
+- **`maxDecimalPlaces`** - Decimal precision limits for numeric values
+
+#### Presentation Extensions
+- **`questionnaire-unit`** - Display units for numerical values (e.g., kg, cm, %)
+- **`entryFormat`** - Input format hints and placeholder text
+- **`ordinalValue`** - Numeric scoring values for answer choices (used for scoring scales like GAD-7, PHQ-9)
+- **`rendering-styleSensitive`** - Style-sensitive rendering hints
+
+#### Platform-Specific Extensions (iOS/visionOS)
+- Custom keyboard type specifications for optimal iOS input experience
+- Autocapitalization preferences for text inputs
+- Text content type hints for improved user experience
+
+### Extension Usage in Practice
+
+These extensions are utilized in example questionnaires such as:
+- **GAD-7 Anxiety Scale** - Uses `ordinalValue` extensions for proper anxiety scoring
+- **PHQ-9 Depression Scale** - Uses rendering extensions for optimal presentation
+- **Slider Examples** - Uses item control and value range extensions for interactive sliders
+
+The ResearchKitOnFHIR integration ensures that FHIR questionnaires maintain their clinical validity while providing rich, interactive user experiences on iOS platforms.
