@@ -80,7 +80,7 @@ Configures precision and increments for slider controls:
 }
 ```
 
-### Validation Extensions
+### 2.2.1.2 Validation Extensions
 
 Comprehensive input validation ensures data quality and user experience:
 
@@ -441,7 +441,7 @@ The following example demonstrates a complete implementation of the PHQ-9 (Patie
 }
 ```
 
-### Corresponding QuestionnaireResponse
+### 2.2.2.1 Corresponding QuestionnaireResponse
 
 When a patient completes the survey, the system generates a FHIR QuestionnaireResponse:
 

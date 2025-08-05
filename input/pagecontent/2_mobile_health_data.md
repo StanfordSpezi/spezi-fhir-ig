@@ -14,51 +14,9 @@
 
 This section provides comprehensive guidance on representing mobile health data using the Spezi framework and FHIR standards. Mobile health applications generate vast amounts of health data from various sources including device sensors, user inputs, and wearables. The Spezi framework provides standardized approaches for collecting, transforming, and representing this data using HL7 FHIR resources.
 
-## Overview
-
-Mobile health (mHealth) applications face unique challenges in health data representation:
-- **Diverse Data Sources**: Sensors, wearables, manual inputs, clinical devices
-- **Varying Data Quality**: Consumer vs. medical-grade devices
-- **Interoperability Requirements**: Integration with healthcare systems
-- **Privacy and Security**: Patient data protection across mobile platforms
-
-The Spezi framework addresses these challenges through standardized FHIR resource mapping patterns, built-in validation, and seamless integration with healthcare systems.
-
-## Data Collection Architecture
-
-### iOS HealthKit Integration
+## Data Collection
 
 On iOS platforms, Spezi applications leverage the [HealthKitOnFHIR](https://github.com/StanfordBDHG/HealthKitOnFHIR) library in combination with [SpeziHealthKit](https://github.com/StanfordSpezi/SpeziHealthKit) to serialize HealthKit data into FHIR Observations.
-
-```swift
-// Example: Configuring HealthKit data collection
-import SpeziHealthKit
-import HealthKitOnFHIR
-
-struct HealthKitConfiguration: HealthKitConstraint {
-    func configure() -> [HKObjectType] {
-        [
-            HKQuantityType(.stepCount),
-            HKQuantityType(.heartRate),
-            HKQuantityType(.bloodPressureSystolic),
-            HKQuantityType(.bodyMass)
-        ]
-    }
-}
-
-// Transform HealthKit sample to FHIR Observation
-let observation = try healthKitSample.resource().get(if: Observation.self)
-```
-
-### Data Transformation Pipeline
-
-The transformation from mobile health data to FHIR follows a consistent pattern:
-
-1. **Data Collection**: Raw sensor/device data acquisition
-2. **Validation**: Data quality checks and error handling
-3. **Standardization**: Application of standardized codes (LOINC, UCUM)
-4. **FHIR Mapping**: Creation of appropriate FHIR resources
-5. **Integration**: Transmission to healthcare systems
 
 ## FHIR Observation Structure
 
@@ -102,8 +60,9 @@ HealthKitOnFHIR converts HealthKit samples to FHIR Observations using this struc
     "display": "iPhone Health App"
   }
 }
+```
 
-## HealthKit Mapping Table
+### HealthKit Terminology Mapping Table
 
 |HKQuantityType|Supported|Code|Unit|
 |----|----|----|----|
