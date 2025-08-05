@@ -2,7 +2,7 @@ Profile: SpeziQuestionnaireProfile
 Parent: Questionnaire
 Id: spezi-questionnaire
 Title: "Spezi Questionnaire Profile"
-Description: "Questionnaire Profile used to represent surveys rendered on mobile devices with ResearchKit integration"
+Description: "Questionnaire Profile used to represent surveys rendered on mobile devices"
 * ^version = "1.0.0"
 * ^experimental = false
 * ^date = "2022-08-26"
