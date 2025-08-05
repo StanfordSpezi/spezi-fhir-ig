@@ -20,11 +20,8 @@ Description: "Questionnaire Profile used to represent surveys rendered on mobile
 * item.extension contains
     http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl named itemControl 0..1 MS and
     http://hl7.org/fhir/StructureDefinition/questionnaire-hidden named hidden 0..1 MS and
-    http://hl7.org/fhir/StructureDefinition/questionnaire-sliderStepValue named sliderStepValue 0..1 MS and
     http://hl7.org/fhir/StructureDefinition/minValue named minValue 0..1 MS and
     http://hl7.org/fhir/StructureDefinition/maxValue named maxValue 0..1 MS and
-    http://hl7.org/fhir/StructureDefinition/minValueDate named minValueDate 0..1 MS and
-    http://hl7.org/fhir/StructureDefinition/maxValueDate named maxValueDate 0..1 MS and
     http://hl7.org/fhir/StructureDefinition/maxDecimalPlaces named maxDecimalPlaces 0..1 MS and
     http://hl7.org/fhir/StructureDefinition/questionnaire-unit named unit 0..1 MS and
     http://hl7.org/fhir/StructureDefinition/entryFormat named entryFormat 0..1 MS and
@@ -32,11 +29,8 @@ Description: "Questionnaire Profile used to represent surveys rendered on mobile
     http://hl7.org/fhir/StructureDefinition/regex named regex 0..1 MS
 * item.extension[itemControl] ^short = "UI control type for ResearchKit rendering"
 * item.extension[hidden] ^short = "Controls item visibility in surveys"
-* item.extension[sliderStepValue] ^short = "Step increment for slider controls"
 * item.extension[minValue] ^short = "Minimum value for numeric inputs"
 * item.extension[maxValue] ^short = "Maximum value for numeric inputs"
-* item.extension[minValueDate] ^short = "Minimum date for date inputs"
-* item.extension[maxValueDate] ^short = "Maximum date for date inputs"
 * item.extension[maxDecimalPlaces] ^short = "Decimal precision limit"
 * item.extension[unit] ^short = "Display unit for numerical values"
 * item.extension[entryFormat] ^short = "Input format hints or placeholders"
