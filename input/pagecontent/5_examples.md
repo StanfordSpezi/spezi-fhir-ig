@@ -10,8 +10,6 @@
              
 -->
 
-# Implementation Examples
-
 This section provides comprehensive examples of FHIR resources commonly used in Spezi applications, including mobile health data observations and interactive questionnaires compatible with ResearchKitOnFHIR.
 
 ## Table of Contents

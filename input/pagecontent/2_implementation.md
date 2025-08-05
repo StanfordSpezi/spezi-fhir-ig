@@ -10,8 +10,6 @@
              
 -->
 
-# Implementation
-
 ## Mobile Health Data
 
 Comprehensive guidance on representing mobile health data using the Spezi framework and FHIR standards, including HealthKit integration, data transformation pipelines, and clinical integration patterns.
