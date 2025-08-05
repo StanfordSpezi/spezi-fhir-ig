@@ -27,7 +27,11 @@ Description: "Questionnaire Profile used to represent surveys rendered on mobile
     http://hl7.org/fhir/StructureDefinition/questionnaire-unit named unit 0..1 MS and
     http://hl7.org/fhir/StructureDefinition/entryFormat named entryFormat 0..1 MS and
     http://hl7.org/fhir/StructureDefinition/rendering-styleSensitive named styleSensitive 0..1 MS and
-    http://hl7.org/fhir/StructureDefinition/regex named regex 0..1 MS
+    http://hl7.org/fhir/StructureDefinition/regex named regex 0..1 MS and
+    http://bdh.stanford.edu/fhir/StructureDefinition/validationtext named validationText 0..1 MS and
+    http://bdh.stanford.edu/fhir/StructureDefinition/ios-keyboardtype named keyboardType 0..1 MS and
+    http://bdh.stanford.edu/fhir/StructureDefinition/ios-autocapitalizationType named autocapitalizationType 0..1 MS and
+    http://bdh.stanford.edu/fhir/StructureDefinition/ios-textcontenttype named textContentType 0..1 MS
 * item.extension[itemControl] ^short = "UI control type for ResearchKit rendering"
 * item.extension[hidden] ^short = "Controls item visibility in surveys"
 * item.extension[sliderStepValue] ^short = "Step increment for slider controls"
@@ -38,6 +42,10 @@ Description: "Questionnaire Profile used to represent surveys rendered on mobile
 * item.extension[entryFormat] ^short = "Input format hints or placeholders"
 * item.extension[styleSensitive] ^short = "Style-sensitive rendering hints"
 * item.extension[regex] ^short = "Input validation pattern"
+* item.extension[validationText] ^short = "Custom validation error message"
+* item.extension[keyboardType] ^short = "iOS keyboard type for optimal text input"
+* item.extension[autocapitalizationType] ^short = "iOS autocapitalization behavior"
+* item.extension[textContentType] ^short = "iOS text content type for enhanced user experience"
 * item.answerOption.extension ^slicing.discriminator.type = #value
 * item.answerOption.extension ^slicing.discriminator.path = "url"
 * item.answerOption.extension ^slicing.rules = #open

@@ -14,11 +14,94 @@
 
 This section provides comprehensive guidance on representing mobile health data using the Spezi framework and FHIR standards. Mobile health applications generate vast amounts of health data from various sources including device sensors, user inputs, and wearables. The Spezi framework provides standardized approaches for collecting, transforming, and representing this data using HL7 FHIR resources.
 
+## Overview
+
+Mobile health (mHealth) applications face unique challenges in health data representation:
+- **Diverse Data Sources**: Sensors, wearables, manual inputs, clinical devices
+- **Varying Data Quality**: Consumer vs. medical-grade devices
+- **Interoperability Requirements**: Integration with healthcare systems
+- **Privacy and Security**: Patient data protection across mobile platforms
+
+The Spezi framework addresses these challenges through standardized FHIR resource mapping patterns, built-in validation, and seamless integration with healthcare systems.
+
 ## Data Collection Architecture
 
-### HealthKit Integration
+### iOS HealthKit Integration
 
 On iOS platforms, Spezi applications leverage the [HealthKitOnFHIR](https://github.com/StanfordBDHG/HealthKitOnFHIR) library in combination with [SpeziHealthKit](https://github.com/StanfordSpezi/SpeziHealthKit) to serialize HealthKit data into FHIR Observations.
+
+```swift
+// Example: Configuring HealthKit data collection
+import SpeziHealthKit
+import HealthKitOnFHIR
+
+struct HealthKitConfiguration: HealthKitConstraint {
+    func configure() -> [HKObjectType] {
+        [
+            HKQuantityType(.stepCount),
+            HKQuantityType(.heartRate),
+            HKQuantityType(.bloodPressureSystolic),
+            HKQuantityType(.bodyMass)
+        ]
+    }
+}
+
+// Transform HealthKit sample to FHIR Observation
+let observation = try healthKitSample.resource().get(if: Observation.self)
+```
+
+### Data Transformation Pipeline
+
+The transformation from mobile health data to FHIR follows a consistent pattern:
+
+1. **Data Collection**: Raw sensor/device data acquisition
+2. **Validation**: Data quality checks and error handling
+3. **Standardization**: Application of standardized codes (LOINC, UCUM)
+4. **FHIR Mapping**: Creation of appropriate FHIR resources
+5. **Integration**: Transmission to healthcare systems
+
+## FHIR Observation Structure
+
+HealthKitOnFHIR converts HealthKit samples to FHIR Observations using this structure:
+
+```json
+{
+  "resourceType": "Observation",
+  "id": "spezi-healthkit-steps-example",
+  "status": "final",
+  "category": [
+    {
+      "coding": [
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code": "survey"
+        }
+      ]
+    }
+  ],
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "55423-8",
+        "display": "Number of steps"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/example-patient"
+  },
+  "effectiveDateTime": "2024-01-15T10:30:00Z",
+  "valueQuantity": {
+    "value": 8542,
+    "unit": "steps",
+    "system": "http://unitsofmeasure.org",
+    "code": "{steps}"
+  },
+  "device": {
+    "display": "iPhone Health App"
+  }
+}
 
 ## HealthKit Mapping Table
 
@@ -36,7 +119,7 @@ On iOS platforms, Spezi applications leverage the [HealthKitOnFHIR](https://gith
 |[BloodPressureDiastolic](https://developer.apple.com/documentation/healthkit/HKQuantityTypeIdentifierBloodPressureDiastolic)|✅|[8462-4](http://loinc.org/8462-4)|[mmHg](http://unitsofmeasure.org)|
 |[BloodPressureSystolic](https://developer.apple.com/documentation/healthkit/HKQuantityTypeIdentifierBloodPressureSystolic)|✅|[8480-6](http://loinc.org/8480-6)|[mmHg](http://unitsofmeasure.org)|
 |[BodyFatPercentage](https://developer.apple.com/documentation/healthkit/HKQuantityTypeIdentifierBodyFatPercentage)|✅|[41982-0](http://loinc.org/41982-0)|[%](http://unitsofmeasure.org)|
-|[BodyMass](https://developer.apple.com/documentation/healthkit/HKQuantityTypeIdentifierBodyMass)|✅|[29463-7](http://loinc.org/29463-7)|[lbs](http://unitsofmeasure.org)|
+|[BodyMass](https://developer.apple.com/documentation/healthkit/HKQuantityTypeIdentifierBodyMass)|✅|[29463-7](http://loinc.org/29463-7)|[[lb_av]](http://unitsofmeasure.org)|
 |[BodyMassIndex](https://developer.apple.com/documentation/healthkit/HKQuantityTypeIdentifierBodyMassIndex)|✅|[39156-5](http://loinc.org/39156-5)|[kg/m^2](http://unitsofmeasure.org)|
 |[BodyTemperature](https://developer.apple.com/documentation/healthkit/HKQuantityTypeIdentifierBodyTemperature)|✅|[8310-5](http://loinc.org/8310-5)|[C](http://unitsofmeasure.org)|
 |[DietaryBiotin](https://developer.apple.com/documentation/healthkit/HKQuantityTypeIdentifierDietaryBiotin)|✅|[HKQuantityTypeIdentifierDietaryBiotin](http://developer.apple.com/documentation/healthkit)|[ug](http://unitsofmeasure.org)|
@@ -89,7 +172,7 @@ On iOS platforms, Spezi applications leverage the [HealthKitOnFHIR](https://gith
 |[ForcedExpiratoryVolume1](https://developer.apple.com/documentation/healthkit/HKQuantityTypeIdentifierForcedExpiratoryVolume1)|✅|[20150-9](http://loinc.org/20150-9)|[L](http://unitsofmeasure.org)|
 |[ForcedVitalCapacity](https://developer.apple.com/documentation/healthkit/HKQuantityTypeIdentifierForcedVitalCapacity)|✅|[19870-5](http://loinc.org/19870-5)|[L](http://unitsofmeasure.org)|
 |[HeadphoneAudioExposure](https://developer.apple.com/documentation/healthkit/HKQuantityTypeIdentifierHeadphoneAudioExposure)|✅|[HKQuantityTypeIdentifierHeadphoneAudioExposure](http://developer.apple.com/documentation/healthkit)|[dB(SPL)](http://unitsofmeasure.org)|
-|[HeartRate](https://developer.apple.com/documentation/healthkit/HKQuantityTypeIdentifierHeartRate)|✅|[8867-4](http://loinc.org/8867-4)|[beats/minute](http://unitsofmeasure.org)|
+|[HeartRate](https://developer.apple.com/documentation/healthkit/HKQuantityTypeIdentifierHeartRate)|✅|[8867-4](http://loinc.org/8867-4)|[/min](http://unitsofmeasure.org)|
 |[HeartRateVariabilitySDNN](https://developer.apple.com/documentation/healthkit/HKQuantityTypeIdentifierHeartRateVariabilitySDNN)|✅|[80404-7](http://loinc.org/80404-7)|[ms](http://unitsofmeasure.org)|
 |[Height](https://developer.apple.com/documentation/healthkit/HKQuantityTypeIdentifierHeight)|✅|[8302-2](http://loinc.org/8302-2)|[in](http://unitsofmeasure.org)|
 |[InhalerUsage](https://developer.apple.com/documentation/healthkit/HKQuantityTypeIdentifierInhalerUsage)|✅|[HKQuantityTypeIdentifierInhalerUsage](http://developer.apple.com/documentation/healthkit)|count|
@@ -104,7 +187,7 @@ On iOS platforms, Spezi applications leverage the [HealthKitOnFHIR](https://gith
 |[PushCount](https://developer.apple.com/documentation/healthkit/HKQuantityTypeIdentifierPushCount)|✅|[96502-0](http://loinc.org/96502-0)|wheelchair pushes|
 |[RespiratoryRate](https://developer.apple.com/documentation/healthkit/HKQuantityTypeIdentifierRespiratoryRate)|✅|[9279-1](http://loinc.org/9279-1)|[breaths/minute](http://unitsofmeasure.org)|
 |[RestingHeartRate](https://developer.apple.com/documentation/healthkit/HKQuantityTypeIdentifierRestingHeartRate)|✅|[40443-4](http://loinc.org/40443-4)|[beats/minute](http://unitsofmeasure.org)|
-|[StepCount](https://developer.apple.com/documentation/healthkit/HKQuantityTypeIdentifierStepCount)|✅|[55423-8](http://loinc.org/55423-8)|steps|
+|[StepCount](https://developer.apple.com/documentation/healthkit/HKQuantityTypeIdentifierStepCount)|✅|[55423-8](http://loinc.org/55423-8)|{steps}|
 |[SwimmingStrokeCount](https://developer.apple.com/documentation/healthkit/HKQuantityTypeIdentifierSwimmingStrokeCount)|✅|[HKQuantityTypeIdentifierSwimmingStrokeCount](http://developer.apple.com/documentation/healthkit)|strokes|
 |[TimeInDaylight](https://developer.apple.com/documentation/healthkit/HKQuantityTypeIdentifierTimeInDaylight)|✅|[HKQuantityTypeIdentifierTimeInDaylight](http://developer.apple.com/documentation/healthkit)|[min](http://unitsofmeasure.org)|
 |[UVExposure](https://developer.apple.com/documentation/healthkit/HKQuantityTypeIdentifierUVExposure)|✅|[HKQuantityTypeIdentifierUVExposure](http://developer.apple.com/documentation/healthkit)|count|

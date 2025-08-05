@@ -14,6 +14,8 @@
 
 Spezi applications provide comprehensive support for creating interactive healthcare questionnaires and surveys using industry-standard FHIR Questionnaires. The framework leverages the [ResearchKitOnFHIR](https://github.com/StanfordBDHG/ResearchKitOnFHIR) library in conjunction with [SpeziQuestionnaire](https://github.com/StanfordSpezi/SpeziQuestionnaire) to convert FHIR Questionnaires into native [ResearchKit](https://developer.apple.com/design/human-interface-guidelines/researchkit) surveys and serialize results back to FHIR QuestionnaireResponse resources.
 
+ResearchKitOnFHIR supports FHIR Questionnaires that conform to the [SDC (Structured Data Capture) Questionnaire profile](http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire) and extends functionality with iOS-specific extensions.
+
 ## Supported FHIR Extensions
 
 The ResearchKitOnFHIR library supports a comprehensive set of standard HL7 FHIR extensions to enhance questionnaire functionality and provide rich user experiences on mobile platforms.
@@ -96,14 +98,14 @@ Pattern-based validation for text inputs:
 }
 ```
 
-#### questionnaire-validationText
+#### validationtext
 Custom validation messages provide clear user feedback:
 
 ```json
 {
   "extension": [
     {
-      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-validationText",
+      "url": "http://bdh.stanford.edu/fhir/StructureDefinition/validationtext",
       "valueString": "Please enter a valid Social Security Number (XXX-XX-XXXX)"
     }
   ]
@@ -251,7 +253,7 @@ iOS-optimized input experiences:
 {
   "extension": [
     {
-      "url": "http://spezi.stanford.edu/fhir/StructureDefinition/keyboard-type",
+      "url": "http://bdh.stanford.edu/fhir/StructureDefinition/ios-keyboardtype",
       "valueString": "numberPad"
     }
   ]
@@ -263,7 +265,7 @@ iOS-optimized input experiences:
 {
   "extension": [
     {
-      "url": "http://spezi.stanford.edu/fhir/StructureDefinition/autocapitalization",
+      "url": "http://bdh.stanford.edu/fhir/StructureDefinition/ios-autocapitalizationType",
       "valueString": "words"
     }
   ]
@@ -275,7 +277,7 @@ iOS-optimized input experiences:
 {
   "extension": [
     {
-      "url": "http://spezi.stanford.edu/fhir/StructureDefinition/text-content-type",
+      "url": "http://bdh.stanford.edu/fhir/StructureDefinition/ios-textcontenttype",
       "valueString": "emailAddress"
     }
   ]
@@ -292,7 +294,7 @@ The following example demonstrates a complete implementation of the PHQ-9 (Patie
   "id": "phq-9-depression-screening",
   "meta": {
     "profile": [
-      "http://spezi.stanford.edu/fhir/StructureDefinition/spezi-questionnaire"
+      "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire"
     ]
   },
   "identifier": [
@@ -308,6 +310,62 @@ The following example demonstrates a complete implementation of the PHQ-9 (Patie
   "date": "2024-01-15",
   "publisher": "Stanford Spezi",
   "description": "The PHQ-9 is a validated screening tool for depression severity in healthcare settings.",
+  "contained": [
+    {
+      "resourceType": "ValueSet",
+      "id": "phq9-answers",
+      "status": "active",
+      "compose": {
+        "include": [
+          {
+            "system": "http://spezi.stanford.edu/fhir/CodeSystem/phq9-answers",
+            "concept": [
+              {
+                "code": "0",
+                "display": "Not at all",
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
+                    "valueDecimal": 0
+                  }
+                ]
+              },
+              {
+                "code": "1",
+                "display": "Several days",
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
+                    "valueDecimal": 1
+                  }
+                ]
+              },
+              {
+                "code": "2",
+                "display": "More than half the days",
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
+                    "valueDecimal": 2
+                  }
+                ]
+              },
+              {
+                "code": "3",
+                "display": "Nearly every day",
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
+                    "valueDecimal": 3
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
   "item": [
     {
       "linkId": "phq9-intro",
@@ -338,44 +396,7 @@ The following example demonstrates a complete implementation of the PHQ-9 (Patie
           }
         }
       ],
-      "answerOption": [
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
-              "valueDecimal": 0
-            }
-          ],
-          "valueString": "Not at all"
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
-              "valueDecimal": 1
-            }
-          ],
-          "valueString": "Several days"
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
-              "valueDecimal": 2
-            }
-          ],
-          "valueString": "More than half the days"
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
-              "valueDecimal": 3
-            }
-          ],
-          "valueString": "Nearly every day"
-        }
-      ]
+      "answerValueSet": "#phq9-answers"
     },
     {
       "linkId": "phq9-2", 
@@ -395,44 +416,7 @@ The following example demonstrates a complete implementation of the PHQ-9 (Patie
           }
         }
       ],
-      "answerOption": [
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
-              "valueDecimal": 0
-            }
-          ],
-          "valueString": "Not at all"
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
-              "valueDecimal": 1
-            }
-          ],
-          "valueString": "Several days"
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
-              "valueDecimal": 2
-            }
-          ],
-          "valueString": "More than half the days"
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
-              "valueDecimal": 3
-            }
-          ],
-          "valueString": "Nearly every day"
-        }
-      ]
+      "answerValueSet": "#phq9-answers"
     },
     {
       "linkId": "phq9-score",
