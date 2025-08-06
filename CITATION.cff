@@ -19,3 +19,5 @@ authors:
   given-names: "Oliver"
   orcid: "https://orcid.org/0000-0002-7799-2429"
 title: "Spezi FHIR Implementation Guide"
+doi: 10.5281/zenodo.16753768
+url: "https://github.com/StanfordSpezi/spezi-fhir-ig"
